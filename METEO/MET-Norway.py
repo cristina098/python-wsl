@@ -1,4 +1,3 @@
-import pandas as pd
 import requests
 import json
 import datetime
@@ -10,11 +9,15 @@ req = requests.get(url, headers=headers)
 stareaVremii = json.loads(req.text)
 stareaVremiiLocations = stareaVremii['features']
 
+myDict = {}
+
 print(f"Read {len(stareaVremiiLocations)} locations from Meteo Romania at {stareaVremii['date']}")
 for i in range(len(stareaVremiiLocations)):
     if (stareaVremiiLocations[i]['properties']['nume'] == "IASI"):
         currentTime = datetime.datetime.fromisoformat(stareaVremii['date'])
+        currentTime = currentTime.replace(tzinfo=None)
         print(f"[{i}] {stareaVremiiLocations[i]['properties']['nume']}, {currentTime.year}.{currentTime.month}.{currentTime.day} / {currentTime.hour}:00   --> {stareaVremiiLocations[i]['properties']['tempe']}")
+        myDict["RO"] = {"now": f"{currentTime.isoformat()}", "temp": float(stareaVremiiLocations[i]['properties']['tempe'])}
         break
 
 
@@ -27,10 +30,17 @@ metNorwayTimeseries = metNorway['properties']['timeseries']
 
 print(f"Read {len(metNorwayTimeseries)} from MET Norway")
 
-#for i in range(len(metNorwayTimeseries)):
-#    currentTime = datetime.datetime.strptime(metNorwayTimeseries[i]['time'], '%Y-%m-%dT%H:%M:%SZ')
-#    print(f"{currentTime} --> {metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']}")
+myDict["METNO"] = []
 
+for i in range(len(metNorwayTimeseries)):
+    prognosisTime = datetime.datetime.strptime(metNorwayTimeseries[i]['time'], '%Y-%m-%dT%H:%M:%SZ')
+    prognosisTime += datetime.timedelta(hours=3)
+    if (prognosisTime.hour in [3, 9, 15, 21]):
+        #print(f"{prognosisTime} --> {metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']}")
+        myDict["METNO"].append({"now": f"{prognosisTime.isoformat()}", "temp": metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']})
 
+filename = f"MET-Norway-{myDict['RO']['now']}.json"
+print(f"Saving {filename}")
 
-
+with open(filename, "w") as outfile:
+    outfile.write(json.dumps(myDict, indent=4))
