@@ -37,7 +37,7 @@ for i in range(len(OpenMeteoTimes)):
     prognosisTime = datetime.datetime.strptime(OpenMeteoTimes[i], '%Y-%m-%dT%H:%M')
     deltaTime = prognosisTime - currentTime
     if (prognosisTime.hour in [3, 9, 15, 21]) and (deltaTime.total_seconds() > -2000):
-        print(f"{prognosisTime} --> {OpenMeteoTemps[i]}")
+        #print(f"{prognosisTime} --> {OpenMeteoTemps[i]}")
         myDict["OPENMETEO"].append({"now": f"{prognosisTime.isoformat()}", "temp": OpenMeteoTemps[i]})
 
 filename = f"Open-Meteo-{myDict['RO']['now']}.json"
