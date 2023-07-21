@@ -1,4 +1,4 @@
-Read 163 locations from Meteo Romania at 2023-07-21T09:00:00+03:00
-[21] IASI, 2023.7.21 / 9:00   --> 20.0
+Read 163 locations from Meteo Romania at 2023-07-21T15:00:00+03:00
+[21] IASI, 2023.7.21 / 15:00   --> 27.4
 Read 168 from OpenMeteo
-Saving Open-Meteo-2023-07-21T09:00:00.json
+Saving Open-Meteo-2023-07-21T15:00:00.json
