@@ -60,11 +60,18 @@ for i in range(filesNo):
         diferenta = deltaTime.days*24 + deltaTime.seconds//3600
         allData.at[data['METNO'][i]['now'], diferenta] = prognosisTemp
 
-print(allData)
+allDataDiff = allData.copy()
+for index, row in allDataDiff.iterrows():
+    for i in np.arange(0, 230, 6):
+        allDataDiff.at[index, i] = allDataDiff.at[index, i] - allDataDiff.at[index, 'Real']
+
+print(allDataDiff)
 
 allData.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway.csv')
+allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
 
 if (True):
-    allDataPlot = allData.replace(np.nan,0)
+    allDataPlot = allDataDiff.replace(np.nan,0)
+    del allDataPlot['Real']
     ax = sb.heatmap(allDataPlot, annot = False, linewidths = .5)
     plt.show()
