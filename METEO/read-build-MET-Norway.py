@@ -7,7 +7,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 
 firstDate = '2023-07-19T21:00:00'
-lastDate = '2023-07-24T15:00:00'
+lastDate = '2023-07-24T21:00:00'
 timeHelper = (datetime.datetime.strptime(lastDate, '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S'))
 
 filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
