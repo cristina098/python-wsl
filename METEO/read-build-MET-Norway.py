@@ -7,7 +7,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 
 firstDate = '2023-07-19T21:00:00'
-lastDate = '2023-07-25T15:00:00'
+lastDate = '2023-07-27T09:00:00'
 timeHelper = (datetime.datetime.strptime(lastDate, '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S'))
 
 filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
@@ -49,6 +49,7 @@ allData = allData.set_index('Date')
 for i in range(filesNo):
     fileTime = (datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S') + datetime.timedelta(hours=6*i)).isoformat()
     f = open(f'/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-{fileTime}.json',)
+    print(f"reading {fileTime}")
     data = json.load(f)
     f.close()
     allData.at[fileTime, 'Real'] = data['RO']['temp']
