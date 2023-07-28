@@ -4,10 +4,14 @@ import datetime
 import numpy as np
 import pandas as pd
 import seaborn as sb
+
 import matplotlib.pyplot as plt
 
+plt.style.use('ggplot')
+
+
 firstDate = '2023-07-19T21:00:00'
-lastDate = '2023-07-27T15:00:00'
+lastDate = '2023-07-28T09:00:00'
 timeHelper = (datetime.datetime.strptime(lastDate, '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S'))
 
 filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
@@ -68,11 +72,11 @@ for index, row in allDataDiff.iterrows():
 
 print(allDataDiff)
 
-allData.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway.csv')
-allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
+#allData.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway.csv')
+#allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
 
 if (True):
-    allDataPlot = allData.replace(np.nan,0)
-    #del allDataPlot['Real']
+    allDataPlot = allDataDiff.replace(np.nan,0)
+    del allDataPlot['Real']
     ax = sb.heatmap(allDataPlot, annot = False, linewidths = .5)
     plt.show()
