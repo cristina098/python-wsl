@@ -11,7 +11,7 @@ plt.style.use('ggplot')
 
 
 firstDate = '2023-07-19T21:00:00'
-lastDate = '2023-08-06T03:00:00'
+lastDate = '2023-08-10T09:00:00'
 timeHelper = (datetime.datetime.strptime(lastDate, '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S'))
 
 filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
@@ -76,7 +76,7 @@ print(allDataDiff)
 #allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
 
 if (True):
-    if (False): #True pentru diferenta
+    if (True): #True pentru diferenta
         allDataDiffPlot = allDataDiff.replace(np.nan,0)
         del allDataDiffPlot['Real']
         ax = sb.heatmap(allDataDiffPlot, annot = False, linewidths = .5, cmap="vlag", vmin=-8, vmax=8)
