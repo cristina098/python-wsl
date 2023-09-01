@@ -76,7 +76,7 @@ print(allDataDiff)
 #allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
 
 if (True):
-    if (False): #True pentru diferenta
+    if (True): #True pentru diferenta
         allDataDiffPlot = allDataDiff.replace(np.nan,0)
         del allDataDiffPlot['Real']
         ax = sb.heatmap(allDataDiffPlot, annot = False, linewidths = .5, cmap="vlag", vmin=-8, vmax=8)
