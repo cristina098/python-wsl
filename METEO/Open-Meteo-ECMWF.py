@@ -35,7 +35,7 @@ myDict["ECMWFEU"] = []
 
 for i in range(len(OpenMeteoTimes)):
     prognosisTime = datetime.datetime.strptime(OpenMeteoTimes[i], '%Y-%m-%dT%H:%M')
-    prognosisTime += datetime.timedelta(hours=3)
+    prognosisTime += datetime.timedelta(hours=2)
     deltaTime = prognosisTime - currentTime
     if (prognosisTime.hour in [3, 9, 15, 21]) and (deltaTime.total_seconds() > -2000):
         #print(f"{prognosisTime} --> {OpenMeteoTemps[i]}")

@@ -34,7 +34,7 @@ myDict["METNO"] = []
 
 for i in range(len(metNorwayTimeseries)):
     prognosisTime = datetime.datetime.strptime(metNorwayTimeseries[i]['time'], '%Y-%m-%dT%H:%M:%SZ')
-    prognosisTime += datetime.timedelta(hours=3)
+    prognosisTime += datetime.timedelta(hours=2)
     if (prognosisTime.hour in [3, 9, 15, 21]):
         #print(f"{prognosisTime} --> {metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']}")
         myDict["METNO"].append({"now": f"{prognosisTime.isoformat()}", "temp": metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']})
