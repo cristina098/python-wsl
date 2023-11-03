@@ -14,7 +14,7 @@ myDict = {}
 print(f"Read {len(stareaVremiiLocations)} locations from Meteo Romania at {stareaVremii['date']}")
 for i in range(len(stareaVremiiLocations)):
     if (stareaVremiiLocations[i]['properties']['nume'] == "IASI"):
-        currentTime = datetime.datetime.fromisoformat(stareaVremii['date'])
+        currentTime = datetime.datetime.fromisoformat(stareaVremii['date']) + datetime.timedelta(hours=1)
         currentTime = currentTime.replace(tzinfo=None)
         print(f"[{i}] {stareaVremiiLocations[i]['properties']['nume']}, {currentTime.year}.{currentTime.month}.{currentTime.day} / {currentTime.hour}:00   --> {stareaVremiiLocations[i]['properties']['tempe']}")
         myDict["RO"] = {"now": f"{currentTime.isoformat()}", "temp": float(stareaVremiiLocations[i]['properties']['tempe'])}
@@ -34,7 +34,7 @@ myDict["METNO"] = []
 
 for i in range(len(metNorwayTimeseries)):
     prognosisTime = datetime.datetime.strptime(metNorwayTimeseries[i]['time'], '%Y-%m-%dT%H:%M:%SZ')
-    prognosisTime += datetime.timedelta(hours=2)
+    prognosisTime += datetime.timedelta(hours=3)
     if (prognosisTime.hour in [3, 9, 15, 21]):
         #print(f"{prognosisTime} --> {metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']}")
         myDict["METNO"].append({"now": f"{prognosisTime.isoformat()}", "temp": metNorwayTimeseries[i]['data']['instant']['details']['air_temperature']})
