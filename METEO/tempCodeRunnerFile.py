@@ -1,0 +1,1 @@
+https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.151726&lon=27.587914&altitude=60
