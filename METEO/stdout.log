@@ -1,4 +1,4 @@
-Read 163 locations from Meteo Romania at 2024-01-16T21:00:00+02:00
-[21] IASI, 2024.1.16 / 21:00   --> -2.9
+Read 162 locations from Meteo Romania at 2024-01-20T15:00:00+02:00
+[21] IASI, 2024.1.20 / 15:00   --> 0.6
 Read 168 from OpenMeteo
-Saving GFS-USA-2024-01-16T21:00:00.json
+Saving JMA-Japan-2024-01-20T15:00:00.json
