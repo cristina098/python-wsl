@@ -11,7 +11,7 @@ plt.style.use('ggplot')
 
 
 firstDate = '2023-07-19T21:00:00'
-lastDate = '2024-01-22T09:00:00'
+lastDate = '2024-01-30T09:00:00'
 timeHelper = (datetime.datetime.strptime(lastDate, '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S'))
 
 filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
@@ -79,7 +79,7 @@ if (True):
     if (False): #True pentru diferenta
         allDataDiffPlot = allDataDiff.replace(np.nan,0)
         del allDataDiffPlot['Real']
-        ax = sb.heatmap(allDataDiffPlot, annot = False, linewidths = .5, cmap="vlag", vmin=-8, vmax=8)
+        ax = sb.heatmap(allDataDiffPlot, annot = False, linewidths = 0, cmap="vlag", vmin=-15, vmax=15)
     else:
         allDataPlot = allData.replace(np.nan,0)
         ax = sb.heatmap(allDataPlot, annot = False, linewidths = 0, cmap="vlag")
