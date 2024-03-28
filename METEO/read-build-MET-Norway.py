@@ -19,7 +19,7 @@ filesNo = 1 + (timeHelper.days*24 + timeHelper.seconds//3600) // 6
 print(f"You have {filesNo} MET-Norway files")
 
 ############################################################################ read first file to build df structure
-f = open(f'/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-{firstDate}.json',)
+f = open(f'/home/cristina/python-wsl/python-wsl/METEO/MET-Norway-{firstDate}.json',)
 data = json.load(f)
 f.close()
 
@@ -52,7 +52,7 @@ allData = allData.set_index('Date')
 
 for i in range(filesNo):
     fileTime = (datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S') + datetime.timedelta(hours=6*i)).isoformat()
-    f = open(f'/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-{fileTime}.json',)
+    f = open(f'/home/cristina/python-wsl/python-wsl/METEO/MET-Norway-{fileTime}.json',)
     print(f"reading {fileTime}")
     data = json.load(f)
     f.close()
