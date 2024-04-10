@@ -72,8 +72,8 @@ for index, row in allDataDiff.iterrows():
 
 print(allDataDiff)
 
-#allData.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway.csv')
-#allDataDiff.to_csv('/home/lali/TITAN-ROG-sync/python/METEO/MET-Norway-diff.csv')
+#allData.to_csv('/home/cristina/python-wsl/python-wsl/METEO/MET-Norway.csv')
+#allDataDiff.to_csv('/home/cristina/python-wsl/python-wsl/METEO/MET-Norway-diff.csv')
 
 if (True):
     if (False): #True pentru diferenta
