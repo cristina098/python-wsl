@@ -27,9 +27,9 @@ nowTime = datetime.datetime.strptime(data['RO']['now'], '%Y-%m-%dT%H:%M:%S')
 nowTemp = data['RO']['temp']
 
 allData = pd.DataFrame(columns = ['Date', 'Real'])
-for i in range(len(data['ICONGermany'])):
-    prognosisTime = datetime.datetime.strptime(data['ICONGermany'][i]['now'], '%Y-%m-%dT%H:%M:%S')
-    prognosisTemp = data['ICONGermany'][i]['temp']
+for i in range(len(data['GEMCanada'])):
+    prognosisTime = datetime.datetime.strptime(data['GEMCanada'][i]['now'], '%Y-%m-%dT%H:%M:%S')
+    prognosisTemp = data['GEMCanada'][i]['temp']
     deltaTime = prognosisTime - nowTime
     diferenta = deltaTime.days*24 + deltaTime.seconds//3600
     allData[diferenta] = []
@@ -37,7 +37,7 @@ for i in range(len(data['ICONGermany'])):
 newRowDict = {'Date':firstDate}
 newRowDF = pd.DataFrame([newRowDict])
 allData = pd.concat([allData, newRowDF])
-for i in range(filesNo + len(data['ICONGermany'])):
+for i in range(filesNo + len(data['GEMCanada'])):
     intermDate = datetime.datetime.strptime(firstDate, '%Y-%m-%dT%H:%M:%S') + datetime.timedelta(hours=6*(i+1))
     newRowDict = {'Date':intermDate.isoformat()}
     newRowDF = pd.DataFrame([newRowDict])
@@ -58,16 +58,16 @@ for i in range(filesNo):
     f.close()
     allData.at[fileTime, 'Real'] = data['RO']['temp']
     nowTime = datetime.datetime.strptime(data['RO']['now'], '%Y-%m-%dT%H:%M:%S')
-    for i in range(len(data['ICONGermany'])):
-        prognosisTime = datetime.datetime.strptime(data['ICONGermany'][i]['now'], '%Y-%m-%dT%H:%M:%S')
-        prognosisTemp = data['ICONGermany'][i]['temp']
+    for i in range(len(data['GEMCanada'])):
+        prognosisTime = datetime.datetime.strptime(data['GEMCanada'][i]['now'], '%Y-%m-%dT%H:%M:%S')
+        prognosisTemp = data['GEMCanada'][i]['temp']
         deltaTime = prognosisTime - nowTime
         diferenta = deltaTime.days*24 + deltaTime.seconds//3600
-        allData.at[data['ICONGermany'][i]['now'], diferenta] = prognosisTemp
+        allData.at[data['GEMCanada'][i]['now'], diferenta] = prognosisTemp
 
 allDataDiff = allData.copy()
 for index, row in allDataDiff.iterrows():
-    for i in np.arange(0, 230, 6):
+    for i in np.arange(0, 168, 6):
         allDataDiff.at[index, i] = allDataDiff.at[index, i] - allDataDiff.at[index, 'Real']
 
 print(allDataDiff)
@@ -84,7 +84,7 @@ if (True):
         allDataDiffPlot = allDataDiffPlot.rename(columns={0: '0 ore', 24: '1 zi', 48: '2 zile', 72: '3 zile', 96: '4 zile', 120: '5 zile', 144: '6 zile', 168: '7 zile', 192: '8 zile', 216: '9 zile'})
         #print(list(allDataDiffPlot.columns))
 
-        data = allDataDiffPlot[['0 ore', '1 zi', '2 zile', '3 zile', '4 zile', '5 zile', '6 zile', '7 zile', '8 zile', '9 zile']]
+        data = allDataDiffPlot[['0 ore', '1 zi', '2 zile', '3 zile', '4 zile', '5 zile', '6 zile']]#, '7 zile', '8 zile', '9 zile']]
 
         #sb.violinplot(data, bw_adjust=.5, cut=1, linewidth=1, palette="Set3")
         #sb.boxplot(data)

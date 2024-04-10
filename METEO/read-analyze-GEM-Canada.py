@@ -67,7 +67,7 @@ for i in range(filesNo):
 
 allDataDiff = allData.copy()
 for index, row in allDataDiff.iterrows():
-    for i in np.arange(0, 230, 6):
+    for i in np.arange(0, 168, 6):
         allDataDiff.at[index, i] = allDataDiff.at[index, i] - allDataDiff.at[index, 'Real']
 
 print(allDataDiff)
@@ -84,7 +84,7 @@ if (True):
         allDataDiffPlot = allDataDiffPlot.rename(columns={0: '0 ore', 24: '1 zi', 48: '2 zile', 72: '3 zile', 96: '4 zile', 120: '5 zile', 144: '6 zile', 168: '7 zile', 192: '8 zile', 216: '9 zile'})
         #print(list(allDataDiffPlot.columns))
 
-        data = allDataDiffPlot[['0 ore', '1 zi', '2 zile', '3 zile', '4 zile', '5 zile', '6 zile', '7 zile', '8 zile', '9 zile']]
+        data = allDataDiffPlot[['0 ore', '1 zi', '2 zile', '3 zile', '4 zile', '5 zile', '6 zile']]#, '7 zile', '8 zile', '9 zile']]
 
         #sb.violinplot(data, bw_adjust=.5, cut=1, linewidth=1, palette="Set3")
         #sb.boxplot(data)
