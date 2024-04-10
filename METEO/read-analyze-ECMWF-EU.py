@@ -87,13 +87,13 @@ if (True):
         data = allDataDiffPlot[['0 ore', '1 zi', '2 zile', '3 zile', '4 zile', '5 zile', '6 zile', '7 zile', '8 zile', '9 zile']]
 
         #sb.violinplot(data, bw_adjust=.5, cut=1, linewidth=1, palette="Set3")
-        sb.boxplot(data)
+        #sb.boxplot(data)
         #sb.boxenplot(data)
         #sb.stripplot(data, alpha=0.25)
         #sb.catplot(data=data, native_scale=True, zorder=1)
         #sb.catplot(data=data, kind="box")
         #sb.catplot(data=data, kind="boxen")
-        #sb.catplot(data=data, kind="violin", palette="pastel")
+        sb.catplot(data=data, kind="violin", palette="pastel")
 
 
     else:
